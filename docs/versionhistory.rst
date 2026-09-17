@@ -37,6 +37,10 @@ This library adheres to `Semantic Versioning 2.0 <http://semver.org/>`_.
 - Fixed ``Semaphore(fast_acquire=True)`` losing its fast-acquire behavior when
   instantiated outside a running event loop
   (`#1348 <https://github.com/agronholm/anyio/pull/1348>`_; PR by @feiiiiii5)
+- Fixed ``CapacityLimiter.acquire_on_behalf_of()`` on the asyncio backend leaking the
+  token and raising ``RuntimeError`` instead of ``CancelledError`` when a native
+  cancellation (``Task.cancel()``) landed right after an uncontended acquire on behalf
+  of an object other than the current task
 
 **4.15.1**
 
