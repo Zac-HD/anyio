@@ -29,6 +29,9 @@ This library adheres to `Semantic Versioning 2.0 <http://semver.org/>`_.
   from within ``from_thread.run_sync()``), where ``asyncio.current_task()`` is
   legitimately ``None``
   (`#773 <https://github.com/agronholm/anyio/issues/773>`_; PR by @AmirF194)
+- Fixed worker threads on the asyncio backend never returning to the idle pool (and
+  thus never being reused or pruned) when a ``to_thread.run_sync()`` call was cancelled
+  after it had been queued for the worker but before the worker thread had picked it up
 
 **4.15.1**
 
